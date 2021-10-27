@@ -19,7 +19,7 @@ namespace APIComplexEntityFramework.Data.Repositories
         public async Task<IEnumerable<Like>> GetAllLikesAsync()
         {
             return await _context.Like.
-                ToArrayAsync();
+                ToListAsync();
         }
 
         public async Task<Like> GetLikeByIdAsync(int id)

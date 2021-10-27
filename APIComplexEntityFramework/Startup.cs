@@ -1,6 +1,8 @@
 using APIComplexEntityFramework.Data;
 using APIComplexEntityFramework.Data.Repositories;
+using APIComplexEntityFramework.ModelDTO.Mapping;
 using APIComplexEntityFramework.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,8 +32,6 @@ namespace APIComplexEntityFramework
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Correcto :) 
-            //services.AddDbContext<ApiContext>(options => options.UseMySql(Configuration.GetConnectionString("MySQLDatabase")), new MariaDbServerVersion(new Version(8, 0, 26)));
             services.AddDbContext<ApiContext>(options => options.UseMySql(Configuration.GetConnectionString("MySQLDatabase"), new MariaDbServerVersion(new Version(10,4,20))));
 
             services.AddScoped<IUserRepository, UserRepository>();
@@ -40,6 +40,17 @@ namespace APIComplexEntityFramework
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<ILikeService, LikeService>();
+
+            //var config = new MapperConfiguration(C => { 
+            //    C.AddProfile<AutoMapperUserProfile>();
+            //    C.AddProfile<AutoMapperPostProfile>();
+            //    C.AddProfile<AutoMapperLikeProfile>();
+            //});
+
+            //IMapper mapper = config.CreateMapper();
+            //services.AddSingleton(mapper);
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

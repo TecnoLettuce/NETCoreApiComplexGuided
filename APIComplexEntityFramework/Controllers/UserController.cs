@@ -1,5 +1,7 @@
-﻿using APIComplexEntityFramework.Models;
+﻿using APIComplexEntityFramework.ModelDTO;
+using APIComplexEntityFramework.Models;
 using APIComplexEntityFramework.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace APIComplexEntityFramework.Controllers
     {
 
         private readonly IUserService _userService;
+
         public UserController(IUserService userService)
         {
             _userService = userService;
@@ -34,19 +37,19 @@ namespace APIComplexEntityFramework.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser(User user)
+        public async Task<IActionResult> CreateUser(UserDTO user)
         {
             return Ok(await _userService.CreateUserAsync(user));
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteUser(User user)
+        public async Task<IActionResult> DeleteUser(UserDTO user)
         {
             return Ok(await _userService.DeleteUserAsync(user));
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateUser(User user)
+        public async Task<IActionResult> UpdateUser(UserDTO user)
         {
             return Ok(await _userService.UpdateUserAsync(user)) ;
         }

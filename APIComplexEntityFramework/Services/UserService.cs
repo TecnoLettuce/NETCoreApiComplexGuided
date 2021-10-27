@@ -1,5 +1,7 @@
 ﻿using APIComplexEntityFramework.Data.Repositories;
+using APIComplexEntityFramework.ModelDTO;
 using APIComplexEntityFramework.Models;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,40 +13,55 @@ namespace APIComplexEntityFramework.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        public async Task<IEnumerable<UserDTO>> GetAllUsersAsync()
         {
-            return await _userRepository.GetAllUsersAsync();
+            return ConvertCollection(await _userRepository.GetAllUsersAsync());
         }
 
 
-        public async Task<User> GetUserByIdAsync(int id)
+        public async Task<UserDTO> GetUserByIdAsync(int id)
         {
             if (id.GetType() == Type.GetType("System.Int32"))
-                return await _userRepository.GetUserByIdAsync(id);
+                return _mapper.Map<UserDTO>(await _userRepository.GetUserByIdAsync(id));
 
             return null;
         }
 
-        public async Task<bool> DeleteUserAsync(User user)
+        public async Task<bool> DeleteUserAsync(UserDTO user)
         {
-            return await _userRepository.DeleteUserAsync(user);
+            return await _userRepository.DeleteUserAsync(_mapper.Map<User>(user));
         }
 
-        public async Task<bool> CreateUserAsync(User user)
+        public async Task<bool> CreateUserAsync(UserDTO user)
         {
-            return await _userRepository.CreateUserAsync(user);
+            return await _userRepository.CreateUserAsync(_mapper.Map<User>(user));
         }
 
-        public async Task<bool> UpdateUserAsync(User user)
+        public async Task<bool> UpdateUserAsync(UserDTO user)
         {
-            return await _userRepository.UpdateUserAsync(user);
+            return await _userRepository.UpdateUserAsync(_mapper.Map<User>(user));
         }
+
+        private List<UserDTO> ConvertCollection(IEnumerable<User> collectionToConvert)
+        {
+            List<UserDTO> collectionToReturn = new();
+
+            foreach (var item in collectionToConvert)
+            {
+                collectionToReturn.Add(_mapper.Map<UserDTO>(item));
+            }
+
+            return collectionToReturn;
+        }
+
 
     }
 }
