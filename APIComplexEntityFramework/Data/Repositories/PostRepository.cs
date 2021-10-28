@@ -64,7 +64,8 @@ namespace APIComplexEntityFramework.Data.Repositories
             if (postExtracted != null)
             {
                 postExtracted.ImxPost = post.ImxPost;
-                postExtracted.User = post.User;
+                postExtracted.UserId = post.UserId;
+                postExtracted.Rate = post.Rate;
 
                 await _context.SaveChangesAsync();
                 return true;

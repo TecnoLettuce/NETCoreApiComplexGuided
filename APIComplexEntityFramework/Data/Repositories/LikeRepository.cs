@@ -55,8 +55,8 @@ namespace APIComplexEntityFramework.Data.Repositories
 
             if (likeExtracted != null)
             {
-                likeExtracted.User = like.User;
-                likeExtracted.Post = like.Post;
+                likeExtracted.UserId = like.UserId;
+                likeExtracted.PostId = like.PostId;
 
                 await _context.SaveChangesAsync();
                 return true;
