@@ -8,7 +8,9 @@ namespace APIComplexEntityFramework.ModelDTO
     public class PostReaderDTO
     {
         public string ImxPost { get; set; }
-        public int UserId { get; set; }
         public int Rate { get; set; }
+
+        public virtual UserReaderDTO User { get; set; }
+
     }
 }

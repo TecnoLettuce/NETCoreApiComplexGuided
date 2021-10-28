@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APIComplexEntityFramework.ModelDTO.Writter
 {
-    public class UserWritterDTO : Profile
+    public class UserWritterDTO
     {
         public int UserId { get; set; }
         public string Username { get; set; }
