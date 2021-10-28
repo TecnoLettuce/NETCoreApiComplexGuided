@@ -5,13 +5,15 @@ using System.Threading.Tasks;
 using APIComplexEntityFramework.Models;
 using AutoMapper;
 
+
 namespace APIComplexEntityFramework.ModelDTO.Mapping
 {
-    public class AutoMapperPostProfile : Profile
+    public class AutoMapperLikeReaderProfile : Profile
     {
-        public AutoMapperPostProfile()
+        public AutoMapperLikeReaderProfile()
         {
-            CreateMap<PostDTO, Post>().ReverseMap();
+            CreateMap<LikeReaderDTO, Like>().ReverseMap();
         }
+
     }
 }

@@ -1,4 +1,6 @@
 ﻿using APIComplexEntityFramework.ModelDTO;
+using APIComplexEntityFramework.ModelDTO.Eraser;
+using APIComplexEntityFramework.ModelDTO.Writter;
 using APIComplexEntityFramework.Models;
 using APIComplexEntityFramework.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -34,19 +36,19 @@ namespace APIComplexEntityFramework.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreatePost(PostDTO post)
+        public async Task<IActionResult> CreatePost(PostWritterDTO post)
         {
             return Ok(await _postService.CreatePostAsync(post));
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeletePost(PostDTO post)
+        public async Task<IActionResult> DeletePost(PostEraserDTO post)
         {
             return Ok(await _postService.DeletePostAsync(post));
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdatePost(PostDTO post)
+        public async Task<IActionResult> UpdatePost(PostWritterDTO post)
         {
             return Ok(await _postService.UpdatePostAsync(post));
         }

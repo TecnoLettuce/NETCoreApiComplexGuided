@@ -1,5 +1,7 @@
 ﻿using APIComplexEntityFramework.Data.Repositories;
 using APIComplexEntityFramework.ModelDTO;
+using APIComplexEntityFramework.ModelDTO.Eraser;
+using APIComplexEntityFramework.ModelDTO.Writter;
 using APIComplexEntityFramework.Models;
 using AutoMapper;
 using System.Collections.Generic;
@@ -18,55 +20,55 @@ namespace APIComplexEntityFramework.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<LikeDTO>> GetAllLikesAsync()
+        public async Task<IEnumerable<LikeReaderDTO>> GetAllLikesAsync()
         {
-            List<LikeDTO> likeDTOsToReturn = ConvertCollection(await _likeRepository.GetAllLikesAsync());
+            List<LikeReaderDTO> likeDTOsToReturn = ConvertCollection(await _likeRepository.GetAllLikesAsync());
 
             return likeDTOsToReturn;
         }
 
-        public async Task<LikeDTO> GetLikeByIdAsync(int LikeId)
+        public async Task<LikeReaderDTO> GetLikeByIdAsync(int LikeId)
         {
-            return _mapper.Map<LikeDTO>(await _likeRepository.GetLikeByIdAsync(LikeId));
+            return _mapper.Map<LikeReaderDTO>(await _likeRepository.GetLikeByIdAsync(LikeId));
         }
 
-        public async Task<IEnumerable<LikeDTO>> GetAllLikesByUserIdAsync(int userId)
+        public async Task<IEnumerable<LikeReaderDTO>> GetAllLikesByUserIdAsync(int userId)
         {
-            List<LikeDTO> likesToReturn = ConvertCollection(await _likeRepository.GetLikedByUserId(userId));
+            List<LikeReaderDTO> likesToReturn = ConvertCollection(await _likeRepository.GetLikedByUserId(userId));
 
             return likesToReturn;
         }
 
-        public async Task<IEnumerable<LikeDTO>> GetAllLikesByPostIdAsync(int postId)
+        public async Task<IEnumerable<LikeReaderDTO>> GetAllLikesByPostIdAsync(int postId)
         {
 
-            List<LikeDTO> likesToReturn = ConvertCollection(await _likeRepository.GetLikedByPostId(postId));
+            List<LikeReaderDTO> likesToReturn = ConvertCollection(await _likeRepository.GetLikedByPostId(postId));
 
             return likesToReturn;
         }
 
-        public async Task<bool> CreateLikeAsync(LikeDTO like)
+        public async Task<bool> CreateLikeAsync(LikeWritterDTO like)
         {
             return await _likeRepository.CreateLikeAsync(_mapper.Map<Like>(like));
         }
 
-        public async Task<bool> DeleteLikeAsync(LikeDTO like)
+        public async Task<bool> DeleteLikeAsync(LikeEraserDTO like)
         {
             return await _likeRepository.DeleteLikeAsync(_mapper.Map<Like>(like));
         }
 
-        public async Task<bool> UpdateLikeAsync(LikeDTO like)
+        public async Task<bool> UpdateLikeAsync(LikeWritterDTO like)
         {
             return await _likeRepository.UpdateLikeAsync(_mapper.Map<Like>(like));
         }
 
-        private List<LikeDTO> ConvertCollection(IEnumerable<Like> collectionToConvert)
+        private List<LikeReaderDTO> ConvertCollection(IEnumerable<Like> collectionToConvert)
         {
-            List<LikeDTO> collectionToReturn = new();
+            List<LikeReaderDTO> collectionToReturn = new();
 
             foreach (var item in collectionToConvert)
             {
-                collectionToReturn.Add(_mapper.Map<LikeDTO>(item));
+                collectionToReturn.Add(_mapper.Map<LikeReaderDTO>(item));
             }
 
             return collectionToReturn;

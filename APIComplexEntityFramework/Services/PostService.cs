@@ -1,5 +1,7 @@
 ﻿using APIComplexEntityFramework.Data.Repositories;
 using APIComplexEntityFramework.ModelDTO;
+using APIComplexEntityFramework.ModelDTO.Eraser;
+using APIComplexEntityFramework.ModelDTO.Writter;
 using APIComplexEntityFramework.Models;
 using AutoMapper;
 using System;
@@ -19,47 +21,47 @@ namespace APIComplexEntityFramework.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<PostDTO>> GetAllPostAsync()
+        public async Task<IEnumerable<PostReaderDTO>> GetAllPostAsync()
         {
             return ConvertCollection(await _postRepository.GetAllPostsAsync());
         }
 
 
-        public async Task<PostDTO> GetPostByIdAsync(int id)
+        public async Task<PostReaderDTO> GetPostByIdAsync(int id)
         {
             if (id.GetType() == Type.GetType("System.Int32"))
-                return _mapper.Map<PostDTO>(await _postRepository.GetPostByIdAsync(id));
+                return _mapper.Map<PostReaderDTO>(await _postRepository.GetPostByIdAsync(id));
 
             return null;
         }
 
-        public async Task<bool> DeletePostAsync(PostDTO post)
+        public async Task<bool> DeletePostAsync(PostEraserDTO post)
         {
             return await _postRepository.DeletePostAsync(_mapper.Map<Post>(post));
         }
 
-        public async Task<bool> CreatePostAsync(PostDTO post)
+        public async Task<bool> CreatePostAsync(PostWritterDTO post)
         {
             return await _postRepository.CreatePostAsync(_mapper.Map<Post>(post));
         }
 
-        public async Task<bool> UpdatePostAsync(PostDTO post)
+        public async Task<bool> UpdatePostAsync(PostWritterDTO post)
         {
             return await _postRepository.UpdatePostAsync(_mapper.Map<Post>(post));
         }
 
-        public async Task<IEnumerable<PostDTO>> GetAllPostsByUserIdAsync(int idUser)
+        public async Task<IEnumerable<PostReaderDTO>> GetAllPostsByUserIdAsync(int idUser)
         {
             return ConvertCollection(await _postRepository.GetAllPostsByUserIdAsync(idUser));
         }
 
-        private List<PostDTO> ConvertCollection(IEnumerable<Post> collectionToConvert)
+        private List<PostReaderDTO> ConvertCollection(IEnumerable<Post> collectionToConvert)
         {
-            List<PostDTO> collectionToReturn = new();
+            List<PostReaderDTO> collectionToReturn = new();
 
             foreach (var item in collectionToConvert)
             {
-                collectionToReturn.Add(_mapper.Map<PostDTO>(item));
+                collectionToReturn.Add(_mapper.Map<PostReaderDTO>(item));
             }
 
             return collectionToReturn;

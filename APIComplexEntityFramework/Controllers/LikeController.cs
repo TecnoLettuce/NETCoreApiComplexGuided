@@ -1,4 +1,6 @@
 ﻿using APIComplexEntityFramework.ModelDTO;
+using APIComplexEntityFramework.ModelDTO.Eraser;
+using APIComplexEntityFramework.ModelDTO.Writter;
 using APIComplexEntityFramework.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -41,19 +43,19 @@ namespace APIComplexEntityFramework.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateLike(LikeDTO like)
+        public async Task<IActionResult> CreateLike(LikeWritterDTO like)
         {
             return Ok(await _likeService.CreateLikeAsync(like));
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteLike(LikeDTO like)
+        public async Task<IActionResult> DeleteLike(LikeEraserDTO like)
         {
             return Ok(await _likeService.DeleteLikeAsync(like));
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateLike(LikeDTO like)
+        public async Task<IActionResult> UpdateLike(LikeWritterDTO like)
         {
             return Ok(await _likeService.UpdateLikeAsync(like));
         }

@@ -7,11 +7,11 @@ using AutoMapper;
 
 namespace APIComplexEntityFramework.ModelDTO.Mapping
 {
-    public class AutoMapperUserProfile : Profile
+    public class AutoMapperUserReaderProfile : Profile
     {
-        public AutoMapperUserProfile()
+        public AutoMapperUserReaderProfile()
         {
-            CreateMap<UserDTO, User>().ReverseMap();
+            CreateMap<UserReaderDTO, User>().ReverseMap();
         }
     }
 }

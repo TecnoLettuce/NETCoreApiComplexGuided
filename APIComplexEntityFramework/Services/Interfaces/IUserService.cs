@@ -1,4 +1,6 @@
 ﻿using APIComplexEntityFramework.ModelDTO;
+using APIComplexEntityFramework.ModelDTO.Eraser;
+using APIComplexEntityFramework.ModelDTO.Writter;
 using APIComplexEntityFramework.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,10 +9,10 @@ namespace APIComplexEntityFramework.Services
 {
     public interface IUserService
     {
-        Task<bool> CreateUserAsync(UserDTO user);
-        Task<bool> DeleteUserAsync(UserDTO user);
-        Task<IEnumerable<UserDTO>> GetAllUsersAsync();
-        Task<UserDTO> GetUserByIdAsync(int id);
-        Task<bool> UpdateUserAsync(UserDTO user);
+        Task<bool> CreateUserAsync(UserWritterDTO user);
+        Task<bool> DeleteUserAsync(UserEraserDTO user);
+        Task<IEnumerable<UserReaderDTO>> GetAllUsersAsync();
+        Task<UserReaderDTO> GetUserByIdAsync(int id);
+        Task<bool> UpdateUserAsync(UserWritterDTO user);
     }
 }
