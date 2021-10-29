@@ -41,14 +41,6 @@ namespace APIComplexEntityFramework
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<ILikeService, LikeService>();
 
-            //var config = new MapperConfiguration(C => { 
-            //    C.AddProfile<AutoMapperUserProfile>();
-            //    C.AddProfile<AutoMapperPostProfile>();
-            //    C.AddProfile<AutoMapperLikeProfile>();
-            //});
-
-            //IMapper mapper = config.CreateMapper();
-            //services.AddSingleton(mapper);
 
             services.AddAutoMapper(typeof(Startup));
 
