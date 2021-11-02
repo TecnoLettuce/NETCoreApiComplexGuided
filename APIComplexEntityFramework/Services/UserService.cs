@@ -28,7 +28,6 @@ namespace APIComplexEntityFramework.Services
             return ConvertCollection(await _userRepository.GetAllUsersAsync());
         }
 
-
         public async Task<UserReaderDTO> GetUserByIdAsync(int id)
         {
             if (id.GetType() == Type.GetType("System.Int32"))
