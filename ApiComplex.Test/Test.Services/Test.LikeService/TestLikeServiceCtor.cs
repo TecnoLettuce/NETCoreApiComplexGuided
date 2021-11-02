@@ -23,7 +23,6 @@ namespace ApiComplex.Test.Test.Services.Test.LikeService
 
             Assert.NotNull(likeService);
             Assert.IsType<APIComplexEntityFramework.Services.LikeService>(likeService);
-            Assert.IsType<APIComplexEntityFramework.Services.LikeService>(likeService);
         }
     }
 }
