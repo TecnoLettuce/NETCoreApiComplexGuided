@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Test.Controller\" />
-    <Folder Include="Test.Data\Test.Repositories\Test.LikeRepository\" />
     <Folder Include="Test.Data\Test.Repositories\Test.PostRepository\" />
     <Folder Include="Test.Data\Test.Repositories\Test.UserRepository\" />
   </ItemGroup>
