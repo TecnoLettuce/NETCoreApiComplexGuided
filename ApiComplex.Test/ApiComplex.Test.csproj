@@ -20,9 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Test.Controller\" />
-    <Folder Include="Test.Data\Test.Repositories\Test.PostRepository\" />
-    <Folder Include="Test.Data\Test.Repositories\Test.UserRepository\" />
+    <Folder Include="Test.Controller\Test.PostController\" />
+    <Folder Include="Test.Controller\Test.UserController\" />
+    <Folder Include="Test.Controller\Test.LikeController\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -23,7 +23,6 @@ namespace APIComplexEntityFramework.Data.Repositories
                 .ToArrayAsync();
         }
 
-        // Este no funciona
         public async Task<IEnumerable<Post>> GetAllPostsByUserIdAsync(int idUser)
         {
             return await _context.Post.Include(i => i.User).Where(w => w.User.UserId == idUser).ToArrayAsync();
