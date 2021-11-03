@@ -20,12 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Test.Controller\Test.PostController\" />
-    <Folder Include="Test.Controller\Test.UserController\" />
-    <Folder Include="Test.Controller\Test.LikeController\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\APIComplexEntityFramework\APIComplexEntityFramework.csproj" />
   </ItemGroup>
 
