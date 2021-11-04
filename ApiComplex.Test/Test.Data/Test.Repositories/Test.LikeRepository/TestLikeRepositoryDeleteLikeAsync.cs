@@ -14,7 +14,7 @@ namespace ApiComplex.Test.Test.Data.Test.Repositories.Test.LikeRepository
         private readonly ApiContext _context;
 
         [Fact]
-        public void TestDeleteLikeResturnsSomething()
+        public void TestDeleteLikeResturnsSomethingAsync()
         {
             APIComplexEntityFramework.Data.Repositories.LikeRepository likeRepository = new APIComplexEntityFramework.Data.Repositories.LikeRepository(_context);
 
@@ -32,6 +32,7 @@ namespace ApiComplex.Test.Test.Data.Test.Repositories.Test.LikeRepository
             likeToCreate.User.UserId = 0;
             likeToCreate.User.Username = "Sample";
             likeToCreate.User.Password = "Sample";
+
 
             Task task = likeRepository.CreateLikeAsync(likeToCreate).ContinueWith(
                 innserTask =>
